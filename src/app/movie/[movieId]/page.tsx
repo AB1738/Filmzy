@@ -46,7 +46,7 @@ const MoviePage = async ({ params }: PropType) => {
       <p className="flex-1 font-semibold text-center leading-7">
         {movie.overview}
       </p>
-      <div className="flex flex-col sm:flex-row justify-center items-center w-full">
+      <div className="flex flex-col sm:flex-row justify-center items-center w-full my-2">
         <div className="flex flex-col text-center gap-2 flex-1">
           <h3 className="font-bold text-2xl pb-2">Movie Info</h3>
 
@@ -76,7 +76,6 @@ const MoviePage = async ({ params }: PropType) => {
       {video && video.length > 0 && (
         <iframe
           className="rounded-4xl w-full md:w-[560px] aspect-video"
-          //   height="315"
           src={`https://www.youtube.com/embed/${video[0].key}`}
           title={video[0].name}
           frameBorder="0"

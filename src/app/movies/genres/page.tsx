@@ -13,7 +13,7 @@ const GenrePage = async ({ searchParams }: GenreSearchProps) => {
   const genreName = genre.split("/")[0];
   console.log(id);
   const movies = await getMovieByGenre(parseInt(id));
-  if (!movies)
+  if (!movies || movies.length < 1)
     return (
       <h1 className="text-5xl font-bold my-4 text-center sm:text-left">
         No results

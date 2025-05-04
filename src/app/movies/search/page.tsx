@@ -11,7 +11,7 @@ interface MovieSearchProps {
 const MovieSearchPage = async ({ searchParams }: MovieSearchProps) => {
   const { query } = await searchParams;
   const movies = await getQueriedMovie(query);
-  if (!movies)
+  if (!movies || movies.length < 1)
     return (
       <h1 className="text-5xl font-bold my-4 text-center sm:text-left">
         No results
