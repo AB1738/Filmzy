@@ -25,17 +25,21 @@ const MoviePage = async ({ params }: PropType) => {
   };
 
   return (
-    <div>
-      <h1 className="text-3xl font-bold">{movie.title}</h1>
-      <a href={movie.homepage}>
-        <Image
-          src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
-          alt={`${movie.title} cover image`}
-          height={80}
-          width={80}
-        />
-      </a>
-      <p>{movie.overview}</p>
+    <div className="flex flex-col gap-2.5 items-center">
+      <h1 className="text-3xl font-bold sm:self-start py-2">{movie.title}</h1>
+      <div className="flex flex-col sm:flex-row items-center">
+        <a href={movie.homepage} className="flex-1">
+          <Image
+            src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
+            alt={`${movie.title} cover image`}
+            height={1000}
+            width={1000}
+            className="h-[300px] rounded-lg w-full"
+          />
+        </a>
+        <p className="flex-1 font-semibold text-center">{movie.overview}</p>
+      </div>
+
       <p>
         Original Language: <span>{movie.original_language.toUpperCase()}</span>
       </p>
@@ -45,15 +49,19 @@ const MoviePage = async ({ params }: PropType) => {
       <p>
         Runtime: <span>{getDuration(movie.runtime)}</span>
       </p>
-      <ul>
-        {movie.genres.map((genre) => (
-          <li key={genre.id}>{genre.name}</li>
-        ))}
-      </ul>
+      <div className="flex flex-col items-center">
+        <h3 className="font-bold text-2xl pb-2">Genres</h3>
+        <ul>
+          {movie.genres.map((genre) => (
+            <li key={genre.id} className="py-1">
+              {genre.name}
+            </li>
+          ))}
+        </ul>
+      </div>
       {video && (
         <iframe
-          className="rounded-4xl"
-          width="560"
+          className="rounded-4xl w-full md:w-[560px]"
           height="315"
           src={`https://www.youtube.com/embed/${video[0].key}`}
           title={video[0].name}

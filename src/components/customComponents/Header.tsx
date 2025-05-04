@@ -17,8 +17,8 @@ const Header = () => {
   };
   return (
     <header className="fixed top-0 w-full h-20 z-20">
-      <nav className="flex justify-between items-center py-5 px-15">
-        <Link href={"/"} className="text-4xl font-bold">
+      <nav className="flex justify-between items-center py-5 px-5 sm:px-15">
+        <Link href={"/"} className="text-3xl sm:text-5xl font-bold">
           Filmzy
         </Link>
         <div className="flex gap-4">
