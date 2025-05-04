@@ -17,7 +17,7 @@ const MovieList = ({ movies }: MovieListProps) => {
               className="relative rounded flex flex-col sm:flex-row justify-center items-center  gap-3 w-full border-gray-400 hover:scale-101 transition-transform duration-600"
             >
               <Image
-                src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
+                src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
                 alt={`Cover image for ${movie.title}`}
                 height={1000}
                 width={1000}
