@@ -1,10 +1,9 @@
 import { Movies } from "../../types/movies";
 
-const getQueriedMovie = async (movie: string) => {
-  console.log("lol", movie);
+const getMovieByGenre = async (id: number) => {
   try {
     const response = await fetch(
-      `https://api.themoviedb.org/3/search/movie?query=${movie}`,
+      `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${id}`,
       {
         method: "GET",
         headers: {
@@ -16,15 +15,12 @@ const getQueriedMovie = async (movie: string) => {
         },
       }
     );
-    console.log(response);
     const data = await response.json();
-    console.log(data);
     const movies: Movies = data.results;
-    console.log(movies);
     return movies;
   } catch (e) {
     console.log(e);
   }
 };
 
-export default getQueriedMovie;
+export default getMovieByGenre;

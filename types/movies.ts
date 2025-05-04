@@ -34,7 +34,7 @@ export type MovieData = {
   poster_path: string;
   production_companies: ProductionCompany[];
   production_countries: ProductionCountry[];
-  release_fate: string;
+  release_date: string;
   revenue: number;
   runtime: number;
   spoken_languages: SpokenLanguage[];
@@ -44,6 +44,7 @@ export type MovieData = {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  homepage: string;
 };
 type ProductionCompany = {
   id: number;

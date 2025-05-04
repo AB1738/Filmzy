@@ -1,3 +1,4 @@
+import MovieCarousel from "@/components/customComponents/MovieCarousel";
 import getCurrentlyPlayingMovies from "@/lib/getCurrentlyPlayingMovies";
 import getMovieGenres from "@/lib/getMovieGenres";
 import getMovieVideo from "@/lib/getMovieVideo";
@@ -7,11 +8,14 @@ import getUpcomingMovies from "@/lib/getUpcomingMovies";
 import Image from "next/image";
 
 export default async function Home() {
-  const movies = await getMovieVideo(297762);
+  // const movies = await getMovieVideo(297762);
+  const movies = await getCurrentlyPlayingMovies();
   console.log(movies);
+
   return (
-    <div>
-      {movies &&
+    <section>
+      {movies && <MovieCarousel movies={movies} />}
+      {/* {movies &&
         movies.map((movie) => (
           <h1>
             {movie.name}{" "}
@@ -26,7 +30,10 @@ export default async function Home() {
               allowFullScreen
             ></iframe>
           </h1>
-        ))}
-    </div>
+        ))} */}
+    </section>
   );
 }
+
+// https://image.tmdb.org/t/p/w500
+// https://image.tmdb.org/t/p/original

@@ -1,9 +1,11 @@
-import { MovieData, Movies } from "../../types/movies";
+"use server";
 
-const getMovieData = async (movieId: number) => {
+import { Genres } from "../../../types/genres";
+
+export const getMovieGenres = async () => {
   try {
     const response = await fetch(
-      `https://api.themoviedb.org/3/movie/${movieId}`,
+      "https://api.themoviedb.org/3/genre/movie/list",
       {
         method: "GET",
         headers: {
@@ -13,11 +15,10 @@ const getMovieData = async (movieId: number) => {
         cache: "force-cache",
       }
     );
-    const movie: MovieData = await response.json();
-    return movie;
+    const data = await response.json();
+    const genres: Genres = data.genres;
+    return genres;
   } catch (e) {
     console.log(e);
   }
 };
-
-export default getMovieData;
