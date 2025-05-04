@@ -17,13 +17,18 @@ const MoviePage = async ({ params }: PropType) => {
   if (!movie) notFound();
   const getDuration = (runtime: number) => {
     const hours = Math.floor(runtime / 60);
-    const mins = Math.floor(runtime % 60);
+    const mins = runtime % 60;
+
     const hourLabel = hours === 1 ? "hour" : "hours";
     const minLabel = mins === 1 ? "minute" : "minutes";
 
-    return `${
-      hours > 0 ? (hours && hourLabel ? "hours and" : "hour and") : ""
-    } ${mins} ${minLabel ? "minutes" : "minute"}`;
+    if (hours > 0 && mins > 0) {
+      return `${hours} ${hourLabel} and ${mins} ${minLabel}`;
+    } else if (hours > 0) {
+      return `${hours} ${hourLabel}`;
+    } else {
+      return `${mins} ${minLabel}`;
+    }
   };
 
   return (
@@ -32,7 +37,7 @@ const MoviePage = async ({ params }: PropType) => {
       <div className="flex flex-col sm:flex-row items-center">
         <a href={movie.homepage} className="flex-1">
           <Image
-            src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
+            src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
             alt={`${movie.title} cover image`}
             height={1000}
             width={1000}
