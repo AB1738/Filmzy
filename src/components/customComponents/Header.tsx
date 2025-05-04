@@ -6,6 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import GenreSelector from "./GenreSelector";
 import { Menu, X } from "lucide-react";
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 const Header = () => {
   const [query, setQuery] = useState<string>("");
@@ -63,7 +64,17 @@ const Header = () => {
               className="placeholder-white"
             />
           </form>
-          <Button>Log In</Button>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+          <SignedOut>
+            <Button
+              asChild
+              className="cursor-pointer font-semibold bg-transparent"
+            >
+              <SignInButton mode="modal" />
+            </Button>
+          </SignedOut>
         </div>
       </nav>
     </header>
