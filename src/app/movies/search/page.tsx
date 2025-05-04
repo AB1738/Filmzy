@@ -2,7 +2,13 @@ import MovieList from "@/components/customComponents/MovieList";
 import getQueriedMovie from "@/lib/getQueriedMovie";
 import { Suspense } from "react";
 import MoviesLoading from "../loading";
-// import { getQueriedMovie } from "@/app/actions/getQueriedMovie";
+
+export async function generateMetadata({ searchParams }: MovieSearchProps) {
+  const { query } = await searchParams;
+  return {
+    title: `Results for ${query} | Filmzy`,
+  };
+}
 
 interface MovieSearchProps {
   searchParams: Promise<{ query: string }>;

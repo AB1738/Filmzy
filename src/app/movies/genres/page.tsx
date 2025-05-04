@@ -3,6 +3,13 @@ import getMovieByGenre from "@/lib/getMovieByGenre";
 import { Suspense } from "react";
 import MoviesLoading from "../loading";
 
+export async function generateMetadata({ searchParams }: GenreSearchProps) {
+  const { genre } = await searchParams;
+  return {
+    title: `Results for ${genre} | Filmzy`,
+  };
+}
+
 interface GenreSearchProps {
   searchParams: Promise<{ genre: string }>;
 }

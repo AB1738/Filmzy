@@ -29,7 +29,7 @@ const GenreSelector = () => {
 
   return (
     <Select onValueChange={handleChange}>
-      <SelectTrigger className="w-fit cursor-pointer">
+      <SelectTrigger className="w-fit cursor-pointer text-black bg-white">
         <SelectValue placeholder="Genre" />
       </SelectTrigger>
       <SelectContent>

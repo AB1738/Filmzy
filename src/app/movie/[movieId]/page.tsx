@@ -6,6 +6,21 @@ import { notFound } from "next/navigation";
 interface PropType {
   params: Promise<{ movieId: string }>;
 }
+
+export async function generateMetadata({ params }: PropType) {
+  const { movieId } = await params;
+  const movie = await getMovieData(parseInt(movieId));
+
+  if (movie) {
+    return {
+      title: `${movie?.title} – Details, Release Info & More | Filmzy`,
+    };
+  } else
+    return {
+      title: `Movie Not Found`,
+    };
+}
+
 const MoviePage = async ({ params }: PropType) => {
   const { movieId } = await params;
   const movie = await getMovieData(parseInt(movieId));
