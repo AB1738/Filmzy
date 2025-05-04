@@ -18,7 +18,7 @@ interface PropType {
 
 const MovieCarousel = ({ movies }: PropType) => {
   return (
-    <section className=" overflow-y-auto w-full h-screen">
+    <section className=" overflow-hidden">
       <Carousel
         opts={{
           align: "start",
@@ -30,17 +30,16 @@ const MovieCarousel = ({ movies }: PropType) => {
           }),
         ]}
       >
-        <CarouselContent>
+        <CarouselContent className="flex">
           {movies &&
             movies.map((movie) => (
               <CarouselItem key={movie.id}>
                 <Link href={`/movie/${movie.id}`}>
                   <Image
-                    src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                    src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
                     alt={`${movie.title} Image`}
-                    height={10000}
-                    width={10000}
-                    className="h-[500px]"
+                    height={1920}
+                    width={1080}
                   />
                 </Link>
               </CarouselItem>

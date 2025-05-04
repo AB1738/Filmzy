@@ -1,3 +1,4 @@
+import MovieList from "@/components/customComponents/MovieList";
 import getMovieByGenre from "@/lib/getMovieByGenre";
 
 interface GenreSearchProps {
@@ -7,9 +8,22 @@ interface GenreSearchProps {
 const GenrePage = async ({ searchParams }: GenreSearchProps) => {
   const { genre } = await searchParams;
   const id = genre.split("/")[1];
+  const genreName = genre.split("/")[0];
   console.log(id);
   const movies = await getMovieByGenre(parseInt(id));
-  console.log(movies);
-  return <div>GenrePage</div>;
+  if (!movies)
+    return (
+      <h1 className="text-5xl font-bold my-4 text-center sm:text-left">
+        No results
+      </h1>
+    );
+  return (
+    <div>
+      <h1 className="text-3xl font-bold my-4 text-center sm:text-left">
+        Results for {genreName}
+      </h1>
+      <MovieList movies={movies} />
+    </div>
+  );
 };
 export default GenrePage;

@@ -12,6 +12,8 @@ const MoviePage = async ({ params }: PropType) => {
   const video = await getMovieVideo(parseInt(movieId));
 
   console.log(movie);
+  console.log(video);
+
   if (!movie) notFound();
   const getDuration = (runtime: number) => {
     const hours = Math.floor(runtime / 60);
@@ -19,9 +21,9 @@ const MoviePage = async ({ params }: PropType) => {
     const hourLabel = hours === 1 ? "hour" : "hours";
     const minLabel = mins === 1 ? "minute" : "minutes";
 
-    return `${hours} ${hourLabel ? "hours" : "hour"} and ${mins} ${
-      minLabel ? "minutes" : "minute"
-    }`;
+    return `${
+      hours > 0 ? (hours && hourLabel ? "hours and" : "hour and") : ""
+    } ${mins} ${minLabel ? "minutes" : "minute"}`;
   };
 
   return (
@@ -44,7 +46,8 @@ const MoviePage = async ({ params }: PropType) => {
         Original Language: <span>{movie.original_language.toUpperCase()}</span>
       </p>
       <p>
-        Release Date: <span>{movie.release_date}</span>
+        Release Date:{" "}
+        <span>{new Date(movie.release_date).toLocaleDateString()}</span>
       </p>
       <p>
         Runtime: <span>{getDuration(movie.runtime)}</span>
@@ -59,7 +62,7 @@ const MoviePage = async ({ params }: PropType) => {
           ))}
         </ul>
       </div>
-      {video && (
+      {video && video.length > 0 && (
         <iframe
           className="rounded-4xl w-full md:w-[560px]"
           height="315"
