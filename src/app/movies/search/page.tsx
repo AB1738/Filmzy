@@ -1,5 +1,7 @@
 import MovieList from "@/components/customComponents/MovieList";
 import getQueriedMovie from "@/lib/getQueriedMovie";
+import { Suspense } from "react";
+import MoviesLoading from "../loading";
 // import { getQueriedMovie } from "@/app/actions/getQueriedMovie";
 
 interface MovieSearchProps {
@@ -21,7 +23,9 @@ const MovieSearchPage = async ({ searchParams }: MovieSearchProps) => {
       <h1 className="text-3xl font-bold my-4 text-center sm:text-left">
         Results for {query}
       </h1>
-      <MovieList movies={movies} />
+      <Suspense fallback={<MoviesLoading />}>
+        <MovieList movies={movies} />
+      </Suspense>{" "}
     </div>
   );
 };

@@ -13,6 +13,7 @@ const MovieList = ({ movies }: MovieListProps) => {
           movie.backdrop_path && (
             <Link
               href={`/movie/${movie.id}`}
+              key={movie.id}
               className="relative rounded flex flex-col sm:flex-row justify-center items-center  gap-3 w-full border-gray-400 hover:scale-101 transition-transform duration-600"
             >
               <Image

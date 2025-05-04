@@ -1,4 +1,10 @@
+import { CircleLoader } from "react-spinners";
+
 const loading = () => {
-  return <div>loading</div>;
+  return (
+    <div>
+      <CircleLoader />
+    </div>
+  );
 };
 export default loading;

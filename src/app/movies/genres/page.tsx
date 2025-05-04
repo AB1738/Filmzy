@@ -1,5 +1,7 @@
 import MovieList from "@/components/customComponents/MovieList";
 import getMovieByGenre from "@/lib/getMovieByGenre";
+import { Suspense } from "react";
+import MoviesLoading from "../loading";
 
 interface GenreSearchProps {
   searchParams: Promise<{ genre: string }>;
@@ -22,7 +24,9 @@ const GenrePage = async ({ searchParams }: GenreSearchProps) => {
       <h1 className="text-3xl font-bold my-4 text-center sm:text-left">
         Results for {genreName}
       </h1>
-      <MovieList movies={movies} />
+      <Suspense fallback={<MoviesLoading />}>
+        <MovieList movies={movies} />
+      </Suspense>
     </div>
   );
 };
