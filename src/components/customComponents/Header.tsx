@@ -106,7 +106,7 @@ const Header = () => {
         >
           <SignedIn>
             <Link
-              href="/dashboard"
+              href="/filmzyhub"
               className=" bg-[#fff] w-fit whitespace-nowrap text-black  px-2.5 py-1.5 rounded flex items-center justify-center"
             >
               Filmzy Hub
