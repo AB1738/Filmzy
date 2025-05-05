@@ -21,6 +21,7 @@ const MovieList = ({ movies }: MovieListProps) => {
                 alt={`Cover image for ${movie.title}`}
                 height={1000}
                 width={1000}
+                priority
                 className="rounded-lg w-full sm:w-100 aspect-video flex-1"
               />
               <div className="flex-1 flex flex-col items-center text-center gap-4 justify-center px-2 absolute sm:static bottom-5">
