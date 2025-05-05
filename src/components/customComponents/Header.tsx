@@ -49,7 +49,7 @@ const Header = () => {
                 {" "}
                 <Menu className="md:hidden self-end cursor-pointer" />
               </SheetTrigger>
-              <SheetContent className=" bg-[url(https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] bg-cover bg-center border-l-0">
+              <SheetContent className=" bg-[url(/img/SideBar.jpg)] bg-cover bg-center border-l-0">
                 <div className="relative h-full w-full bg-black/50">
                   <SheetHeader>
                     <SheetTitle className="text-white text-xl font-bold">
