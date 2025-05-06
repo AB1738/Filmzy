@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int          @id @default(autoincrement())
+  userId      String       @unique
+  firstName   String
+  comments    Comment[]
+  likedMovies LikedMovie[]
+  watchList   WatchList[]
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  text      String
+  author    User     @relation(fields: [authorId], references: [userId])
+  authorId  String
+  movie     Movie    @relation(fields: [movieId], references: [movieId])
+  movieId   Int
+}
+
+model Movie {
+  id            Int          @id @default(autoincrement())
+  movieId       Int          @unique
+  title         String
+  backdrop_path String
+  overview      String
+  release_date  String
+  comments      Comment[]
+  likes         LikedMovie[]
+  watchlists    WatchList[]
+}
+
+model LikedMovie {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [userId])
+  userId    String
+  movie     Movie    @relation(fields: [movieId], references: [movieId])
+  movieId   Int
+  createdAt DateTime @default(now())
+}
+
+model WatchList {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [userId])
+  userId    String
+  movie     Movie    @relation(fields: [movieId], references: [movieId])
+  movieId   Int
+  createdAt DateTime @default(now())
+}

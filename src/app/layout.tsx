@@ -4,6 +4,8 @@ import "./globals.css";
 import Header from "@/components/customComponents/Header";
 import Footer from "@/components/customComponents/Footer";
 import { ClerkProvider } from "@clerk/nextjs";
+import { ModeToggle } from "@/components/customComponents/ThemeToggler";
+import { ThemeProvider } from "@/providers/ThemeProvider";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -31,9 +33,21 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#30273d] text-white`}
         >
+          {/* <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          > */}
           <Header />
-          <main className="min-h-screen">{children}</main>
+          <main className="min-h-screen relative">
+            {children}
+            <div className=" bottom-2 sticky w-full flex justify-end px-2.5">
+              <ModeToggle />
+            </div>
+          </main>
           <Footer />
+          {/* </ThemeProvider> */}
         </body>
       </ClerkProvider>
     </html>

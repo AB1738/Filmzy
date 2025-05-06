@@ -120,7 +120,7 @@ const Header = () => {
               name="query"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="bg-white"
+              className="bg-white text-black"
             />
           </form>
 
