@@ -1,7 +1,10 @@
+import LikeButton from "@/components/customComponents/LikeButton";
+import WatchListButton from "@/components/customComponents/WatchListButton";
 import getMovieData from "@/lib/getMovieData";
 import getMovieVideo from "@/lib/getMovieVideo";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { currentUser } from "@clerk/nextjs/server";
 
 interface PropType {
   params: Promise<{ movieId: string }>;
@@ -25,6 +28,7 @@ const MoviePage = async ({ params }: PropType) => {
   const { movieId } = await params;
   const movie = await getMovieData(parseInt(movieId));
   const video = await getMovieVideo(parseInt(movieId));
+  const user = await currentUser();
 
   console.log(movie);
   console.log(video);
@@ -58,6 +62,12 @@ const MoviePage = async ({ params }: PropType) => {
           className="rounded-lg w-full"
         />
       </a>
+      {user && (
+        <div className="flex w-full justify-between">
+          <WatchListButton /> <LikeButton />
+        </div>
+      )}
+
       <p className="flex-1 font-semibold text-center leading-7">
         {movie.overview}
       </p>
