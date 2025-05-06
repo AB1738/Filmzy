@@ -53,6 +53,8 @@ model LikedMovie {
   movie     Movie    @relation(fields: [movieId], references: [movieId])
   movieId   Int
   createdAt DateTime @default(now())
+
+  @@unique(name: "liked_user_movie_id", [userId, movieId])
 }
 
 model WatchList {
@@ -62,4 +64,6 @@ model WatchList {
   movie     Movie    @relation(fields: [movieId], references: [movieId])
   movieId   Int
   createdAt DateTime @default(now())
+
+  @@unique([userId, movieId], name: "watchlist_user_movie_id")
 }

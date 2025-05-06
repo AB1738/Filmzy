@@ -7296,6 +7296,7 @@ export namespace Prisma {
 
   export type LikedMovieWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    liked_user_movie_id?: LikedMovieLiked_user_movie_idCompoundUniqueInput
     AND?: LikedMovieWhereInput | LikedMovieWhereInput[]
     OR?: LikedMovieWhereInput[]
     NOT?: LikedMovieWhereInput | LikedMovieWhereInput[]
@@ -7304,7 +7305,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"LikedMovie"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     movie?: XOR<MovieScalarRelationFilter, MovieWhereInput>
-  }, "id">
+  }, "id" | "liked_user_movie_id">
 
   export type LikedMovieOrderByWithAggregationInput = {
     id?: SortOrder
@@ -7351,6 +7352,7 @@ export namespace Prisma {
 
   export type WatchListWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    watchlist_user_movie_id?: WatchListWatchlist_user_movie_idCompoundUniqueInput
     AND?: WatchListWhereInput | WatchListWhereInput[]
     OR?: WatchListWhereInput[]
     NOT?: WatchListWhereInput | WatchListWhereInput[]
@@ -7359,7 +7361,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"WatchList"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     movie?: XOR<MovieScalarRelationFilter, MovieWhereInput>
-  }, "id">
+  }, "id" | "watchlist_user_movie_id">
 
   export type WatchListOrderByWithAggregationInput = {
     id?: SortOrder
@@ -7877,6 +7879,11 @@ export namespace Prisma {
     movieId?: SortOrder
   }
 
+  export type LikedMovieLiked_user_movie_idCompoundUniqueInput = {
+    userId: string
+    movieId: number
+  }
+
   export type LikedMovieCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
@@ -7906,6 +7913,11 @@ export namespace Prisma {
   export type LikedMovieSumOrderByAggregateInput = {
     id?: SortOrder
     movieId?: SortOrder
+  }
+
+  export type WatchListWatchlist_user_movie_idCompoundUniqueInput = {
+    userId: string
+    movieId: number
   }
 
   export type WatchListCountOrderByAggregateInput = {

@@ -30,8 +30,8 @@ const MoviePage = async ({ params }: PropType) => {
   const video = await getMovieVideo(parseInt(movieId));
   const user = await currentUser();
 
-  console.log(movie);
-  console.log(video);
+  // console.log(movie);
+  // console.log(video);
 
   if (!movie) notFound();
   const getDuration = (runtime: number) => {
@@ -64,7 +64,7 @@ const MoviePage = async ({ params }: PropType) => {
       </a>
       {user && (
         <div className="flex w-full justify-between">
-          <WatchListButton /> <LikeButton />
+          <WatchListButton movie={movie} /> <LikeButton movie={movie} />
         </div>
       )}
 

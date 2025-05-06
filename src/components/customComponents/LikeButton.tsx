@@ -1,9 +1,13 @@
 "use client";
 import { ThumbsUp } from "lucide-react";
+import { MovieData } from "../../../types/movies";
 
-const handleClick = () => {};
+interface ButtonPropType {
+  movie: MovieData;
+}
 
-const LikeButton = () => {
+const LikeButton = ({ movie }: ButtonPropType) => {
+  const handleClick = () => {};
   return <ThumbsUp onClick={handleClick} className="cursor-pointer" />;
 };
 export default LikeButton;
