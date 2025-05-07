@@ -5,6 +5,7 @@ import getMovieVideo from "@/lib/getMovieVideo";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { currentUser } from "@clerk/nextjs/server";
+import prisma from "../../../../lib/prisma";
 
 interface PropType {
   params: Promise<{ movieId: string }>;

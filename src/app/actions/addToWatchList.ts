@@ -47,7 +47,9 @@ const addToWatchList = async (movieData: MovieData) => {
             movieId: movieData.id,
           },
         });
-        return watchListedMovie;
+        return {
+          success: "Movie added to your watchlist 🍿",
+        };
       }
       const newUser = await prisma.user.create({
         data: {
@@ -75,7 +77,9 @@ const addToWatchList = async (movieData: MovieData) => {
           movieId: movieData.id,
         },
       });
-      return watchListedMovie;
+      return {
+        success: "Movie added to your watchlist 🍿",
+      };
     }
 
     //IF MOVIE WASNT FOUND THEN THE DATA NEEDS TO BE VALIDATED
@@ -127,7 +131,9 @@ const addToWatchList = async (movieData: MovieData) => {
           movieId: movieData.id,
         },
       });
-      return watchListedMovie;
+      return {
+        success: "Movie added to your watchlist 🍿",
+      };
     }
     const newUser = await prisma.user.create({
       data: {
@@ -158,9 +164,14 @@ const addToWatchList = async (movieData: MovieData) => {
     console.log(newUser);
     console.log(newMovie);
     console.log(watchListedMovie);
-    return watchListedMovie;
+    return {
+      success: "Movie added to your watchlist 🍿",
+    };
   } catch (e) {
     console.log(e);
+    return {
+      error: "Could not add to your watchlist",
+    };
   }
 };
 

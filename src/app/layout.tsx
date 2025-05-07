@@ -5,6 +5,7 @@ import Header from "@/components/customComponents/Header";
 import Footer from "@/components/customComponents/Footer";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ModeToggle } from "@/components/customComponents/ThemeToggler";
+import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -47,6 +48,7 @@ export default function RootLayout({
             </div>
           </main>
           <Footer />
+          <Toaster />
           {/* </ThemeProvider> */}
         </body>
       </ClerkProvider>
