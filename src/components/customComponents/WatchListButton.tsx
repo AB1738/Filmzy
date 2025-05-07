@@ -18,7 +18,6 @@ interface ButtonPropType {
 }
 
 const WatchListButton = ({ movie }: ButtonPropType) => {
-  const { user } = useUser();
   const [isWatchListed, setIsWatchListed] = useState<boolean | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -32,13 +31,22 @@ const WatchListButton = ({ movie }: ButtonPropType) => {
       console.log(watchListStatus);
     };
     fetchWatchListStatus();
-  }, [isWatchListed]);
+  }, []);
 
-  const handleClick = () => {
+  const handleClick = async () => {
     if (!isWatchListed) {
-      const message = addToWatchList(movie);
       //GET TOAST WORKING PROPERLY AND MAKE SURE THE UI IS UPDATING CORRECTLY
-      // toast.promise(message);
+      toast.promise(addToWatchList(movie), {
+        loading: "Adding movie to your watchlist...",
+        success: (res) => {
+          setIsWatchListed(true);
+          return res.success;
+        },
+        error: (err) => {
+          setIsWatchListed(false);
+          return err.message || "Something went wrong";
+        },
+      });
     } else if (isWatchListed) {
       console.log("already watchlisted this");
       //removeFromWatchList server action
