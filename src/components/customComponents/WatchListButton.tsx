@@ -12,6 +12,7 @@ import { useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 import getWatchlistStatus from "@/app/actions/getWatchlistStatus";
 import { toast } from "sonner";
+import removeFromWatchList from "@/app/actions/removeFromWatchlist";
 
 interface ButtonPropType {
   movie: MovieData;
@@ -35,7 +36,6 @@ const WatchListButton = ({ movie }: ButtonPropType) => {
 
   const handleClick = async () => {
     if (!isWatchListed) {
-      //GET TOAST WORKING PROPERLY AND MAKE SURE THE UI IS UPDATING CORRECTLY
       toast.promise(addToWatchList(movie), {
         loading: "Adding movie to your watchlist...",
         success: (res) => {
@@ -50,6 +50,17 @@ const WatchListButton = ({ movie }: ButtonPropType) => {
     } else if (isWatchListed) {
       console.log("already watchlisted this");
       //removeFromWatchList server action
+      toast.promise(removeFromWatchList(movie), {
+        loading: "Removing movie from your watchlist...",
+        success: (res) => {
+          setIsWatchListed(false);
+          return res.success;
+        },
+        error: (err) => {
+          setIsWatchListed(true);
+          return err.message || "Something went wrong";
+        },
+      });
     }
   };
 

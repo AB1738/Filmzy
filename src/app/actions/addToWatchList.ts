@@ -88,7 +88,6 @@ const addToWatchList = async (movieData: MovieData) => {
     if (!movie.success) {
       throw new Error("Incorrect movie structure. Validation failed");
     }
-    // console.log("Movie passed validation", movie);
 
     //ADD MOVIE TO THE DATABASE
     const newMovie = await prisma.movie.create({
@@ -161,9 +160,7 @@ const addToWatchList = async (movieData: MovieData) => {
         movieId: movieData.id,
       },
     });
-    console.log(newUser);
-    console.log(newMovie);
-    console.log(watchListedMovie);
+
     return {
       success: "Movie added to your watchlist 🍿",
     };
