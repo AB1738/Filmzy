@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import getWatchlistStatus from "@/app/actions/getWatchlistStatus";
 import { toast } from "sonner";
 import removeFromWatchList from "@/app/actions/removeFromWatchlist";
+import getWishlistOrLikeStatus from "@/app/actions/getWishlistOrLikeStatus";
 
 interface ButtonPropType {
   movie: MovieData;
@@ -24,7 +25,7 @@ const WatchListButton = ({ movie }: ButtonPropType) => {
 
   useEffect(() => {
     const fetchWatchListStatus = async () => {
-      const watchListStatus = await getWatchlistStatus(movie);
+      const watchListStatus = await getWishlistOrLikeStatus("watchList", movie);
 
       watchListStatus && setIsWatchListed(watchListStatus);
       setIsLoading(false);
