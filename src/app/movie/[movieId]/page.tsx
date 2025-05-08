@@ -113,6 +113,7 @@ const MoviePage = async ({ params }: PropType) => {
           </ul>
         </div>
       </div>
+      {/* Comment section */}
 
       <div className="max-w-full">
         <h3 className="py-3 font-semibold text-xl sm:text-2xl">
