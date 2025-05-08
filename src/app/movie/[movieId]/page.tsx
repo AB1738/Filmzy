@@ -5,7 +5,6 @@ import getMovieVideo from "@/lib/getMovieVideo";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { currentUser } from "@clerk/nextjs/server";
-import prisma from "../../../../lib/prisma";
 import getMovieRecommendations from "@/lib/getMovieRecommendations";
 import RecommendedMovies from "@/components/customComponents/RecommendedMovies";
 
@@ -115,7 +114,7 @@ const MoviePage = async ({ params }: PropType) => {
         </div>
       </div>
       {/* Comment section */}
-
+      {/* <CommentSection /> */}
       {recommendedMovies && recommendedMovies.length > 0 && (
         <div className="max-w-full">
           <h3 className="py-3 font-semibold text-xl sm:text-2xl">

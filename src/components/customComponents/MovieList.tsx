@@ -15,13 +15,20 @@ interface MovieListProps {
       }[];
 }
 const MovieList = ({ movies }: MovieListProps) => {
+  function hasMovieId(movie: any): movie is { movieId: number } {
+    return movie && "movieId" in movie;
+  }
   return (
     <div className="flex flex-col gap-5 sm:gap-2 items-center">
       {movies.map(
         (movie) =>
           movie.backdrop_path && (
             <Link
-              href={`/movie/${movie.id}`}
+              href={`${
+                hasMovieId(movie)
+                  ? `/movie/${movie.movieId}`
+                  : `/movie/${movie.id}`
+              }`}
               key={movie.id}
               className="relative rounded flex flex-col sm:flex-row justify-center items-center  gap-3 w-full border-gray-400 hover:scale-101 transition-transform duration-600"
             >

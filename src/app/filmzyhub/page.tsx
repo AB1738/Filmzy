@@ -29,7 +29,7 @@ const page = async () => {
   console.log(watchListMovies);
 
   return (
-    <div className="flex flex-col items-center text-center">
+    <div className="flex flex-col h-full items-center text-center">
       <h1 className=" text-3xl sm:text-4xl font-bold py-3">FilmzyHub</h1>
       <div>stats go here</div>
       <Tabs defaultValue="watchList" className="w-full rounded-none">
