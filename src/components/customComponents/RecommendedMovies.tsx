@@ -23,10 +23,9 @@ const RecommendedMovies = ({ movies }: PropType) => {
     >
       <CarouselContent className="">
         {movies.map((movie) => (
-          <CarouselItem className="sm:basis-1/2 md:basis-1/3">
+          <CarouselItem className="sm:basis-1/2 md:basis-1/3" key={movie.id}>
             <Link href={`/movie/${movie.id}`} className="relative">
               <Image
-                key={movie.id}
                 src={
                   `https://image.tmdb.org/t/p/original/${movie.backdrop_path}` ||
                   `https://image.tmdb.org/t/p/original/${movie.poster_path}`

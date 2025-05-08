@@ -3,7 +3,16 @@ import { Movies } from "../../../types/movies";
 import Link from "next/link";
 
 interface MovieListProps {
-  movies: Movies;
+  movies:
+    | Movies
+    | {
+        id: number;
+        movieId: number;
+        title: string;
+        backdrop_path: string;
+        overview: string;
+        release_date: string;
+      }[];
 }
 const MovieList = ({ movies }: MovieListProps) => {
   return (

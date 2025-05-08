@@ -2,7 +2,8 @@ import { currentUser } from "@clerk/nextjs/server";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import prisma from "../../../lib/prisma";
 import RecommendedMovies from "@/components/customComponents/RecommendedMovies";
-import TabMovieCarousel from "@/components/customComponents/TabMovieCarousel";
+import TabMovieCarousel from "@/components/customComponents/TabContent";
+import TabContent from "@/components/customComponents/TabContent";
 
 const page = async () => {
   const user = await currentUser();
@@ -41,12 +42,20 @@ const page = async () => {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="watchList">
-          movies on watchlist show up here
-          {watchListMovies && <TabMovieCarousel movies={watchListMovies} />}
+          <div className="flex flex-col w-full">
+            <h3 className="text-lg font-semibold text-left py-2">
+              🎬 Your Watchlist
+            </h3>
+            {watchListMovies && <TabContent movies={watchListMovies} />}
+          </div>
         </TabsContent>
         <TabsContent value="likedMovies">
-          Liked movies show up here
-          {likedMovies && <TabMovieCarousel movies={likedMovies} />}
+          <div className="flex flex-col w-full">
+            <h3 className="text-lg font-semibold text-left py-2">
+              ❤️ Your Liked Movies
+            </h3>
+            {likedMovies && <TabContent movies={likedMovies} />}
+          </div>
         </TabsContent>
       </Tabs>
     </div>

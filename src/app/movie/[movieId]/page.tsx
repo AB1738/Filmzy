@@ -32,6 +32,7 @@ const MoviePage = async ({ params }: PropType) => {
   const movie = await getMovieData(parseInt(movieId));
   const video = await getMovieVideo(parseInt(movieId));
   const recommendedMovies = await getMovieRecommendations(parseInt(movieId));
+  console.log(recommendedMovies);
 
   const user = await currentUser();
 
@@ -115,12 +116,14 @@ const MoviePage = async ({ params }: PropType) => {
       </div>
       {/* Comment section */}
 
-      <div className="max-w-full">
-        <h3 className="py-3 font-semibold text-xl sm:text-2xl">
-          Liked That Movie? Filmzy’s Picks for You!
-        </h3>
-        {recommendedMovies && <RecommendedMovies movies={recommendedMovies} />}
-      </div>
+      {recommendedMovies && recommendedMovies.length > 0 && (
+        <div className="max-w-full">
+          <h3 className="py-3 font-semibold text-xl sm:text-2xl">
+            Liked That Movie? Filmzy’s Picks for You!
+          </h3>
+          <RecommendedMovies movies={recommendedMovies} />
+        </div>
+      )}
     </div>
   );
 };
