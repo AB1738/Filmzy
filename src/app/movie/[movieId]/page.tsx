@@ -76,8 +76,8 @@ const MoviePage = async ({ params }: PropType) => {
       <p className="flex-1 font-semibold text-center leading-7">
         {movie.overview}
       </p>
-      <div className="flex flex-col sm:flex-row justify-center items-center w-full my-2">
-        <div className="flex flex-col text-center gap-2 flex-1">
+      <div className="grid grid-cols-4 lg:items-center w-full my-2 justify-center gap-2">
+        <div className="col-span-2 lg:col-span-1 flex flex-col text-center gap-2 flex-1">
           <h3 className="font-bold text-2xl pb-2">Movie Info</h3>
 
           <p>
@@ -92,7 +92,17 @@ const MoviePage = async ({ params }: PropType) => {
             Runtime: <span>{getDuration(movie.runtime)}</span>
           </p>
         </div>
-        <div className="flex flex-col items-center text-center flex-1">
+        {video && video.length > 0 && (
+          <iframe
+            className=" mx-auto col-span-4 lg:col-span-2 rounded-4xl w-full md:w-[560px] aspect-video"
+            src={`https://www.youtube.com/embed/${video[0].key}`}
+            title={video[0].name}
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        )}
+        <div className="col-span-2 col-start-3 row-start-1 lg:col-start-4 lg:col-span-1 flex flex-col items-center text-center flex-1">
           <h3 className="font-bold text-2xl pb-2">Genres</h3>
           <ul>
             {movie.genres.map((genre) => (
@@ -103,16 +113,7 @@ const MoviePage = async ({ params }: PropType) => {
           </ul>
         </div>
       </div>
-      {video && video.length > 0 && (
-        <iframe
-          className="rounded-4xl w-full md:w-[560px] aspect-video"
-          src={`https://www.youtube.com/embed/${video[0].key}`}
-          title={video[0].name}
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />
-      )}
+
       <div className="max-w-full">
         <h3 className="py-3 font-semibold text-xl sm:text-2xl">
           Liked That Movie? Filmzy’s Picks for You!
