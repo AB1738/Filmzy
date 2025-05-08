@@ -43,7 +43,7 @@ export default function RootLayout({
           <Header />
           <main className="min-h-screen relative">
             {children}
-            <div className=" bottom-2 sticky w-full flex justify-end px-2.5">
+            <div className=" bottom-2 sticky w-full flex justify-end px-2.5 z-100">
               <ModeToggle />
             </div>
           </main>

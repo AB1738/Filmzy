@@ -6,6 +6,8 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { currentUser } from "@clerk/nextjs/server";
 import prisma from "../../../../lib/prisma";
+import getMovieRecommendations from "@/lib/getMovieRecommendations";
+import RecommendedMovies from "@/components/customComponents/RecommendedMovies";
 
 interface PropType {
   params: Promise<{ movieId: string }>;
@@ -29,6 +31,8 @@ const MoviePage = async ({ params }: PropType) => {
   const { movieId } = await params;
   const movie = await getMovieData(parseInt(movieId));
   const video = await getMovieVideo(parseInt(movieId));
+  const recommendedMovies = await getMovieRecommendations(parseInt(movieId));
+
   const user = await currentUser();
 
   // console.log(movie);
@@ -109,6 +113,12 @@ const MoviePage = async ({ params }: PropType) => {
           allowFullScreen
         />
       )}
+      <div className="max-w-full">
+        <h3 className="py-3 font-semibold text-xl sm:text-2xl">
+          Liked That Movie? Filmzy’s Picks for You!
+        </h3>
+        {recommendedMovies && <RecommendedMovies movies={recommendedMovies} />}
+      </div>
     </div>
   );
 };
