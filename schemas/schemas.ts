@@ -28,6 +28,12 @@ export const movieSchema = z
     title: z.string(),
     overview: z.string(),
     release_date: z.string(),
+    genres: z.array(
+      z.object({
+        id: z.number(),
+        name: z.string(),
+      })
+    ),
     // comments: z.array(commentSchema),
     // likes: z.array(likedMoviesSchema),
     // watchlists: z.array(watchListedMoviesSchema),

@@ -106,6 +106,8 @@ const addToWishOrLikeList = async (
 
     //IF MOVIE WASNT FOUND THEN THE DATA NEEDS TO BE VALIDATED
     const movie = movieSchema.safeParse(movieData);
+    console.log("FROM DATA ACCESS LAYER");
+    console.log(movie);
 
     if (!movie.success) {
       throw new Error("Incorrect movie structure. Validation failed");
@@ -117,6 +119,7 @@ const addToWishOrLikeList = async (
         movieId: movie.data.id,
         title: movie.data.title,
         backdrop_path: movie.data.backdrop_path,
+        // genres: movie.data.genres.map((genre) => genre.name),
         overview: movie.data.overview,
         release_date: movie.data.release_date,
         comments: undefined,

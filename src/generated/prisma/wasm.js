@@ -135,21 +135,14 @@ exports.Prisma.CommentScalarFieldEnum = {
   movieId: 'movieId'
 };
 
-exports.Prisma.ReplyScalarFieldEnum = {
-  id: 'id',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  text: 'text',
-  commentId: 'commentId'
-};
-
 exports.Prisma.MovieScalarFieldEnum = {
   id: 'id',
   movieId: 'movieId',
   title: 'title',
   backdrop_path: 'backdrop_path',
   overview: 'overview',
-  release_date: 'release_date'
+  release_date: 'release_date',
+  genres: 'genres'
 };
 
 exports.Prisma.LikedMovieScalarFieldEnum = {
@@ -180,7 +173,6 @@ exports.Prisma.QueryMode = {
 exports.Prisma.ModelName = {
   User: 'User',
   Comment: 'Comment',
-  Reply: 'Reply',
   Movie: 'Movie',
   LikedMovie: 'LikedMovie',
   WatchList: 'WatchList'

@@ -32,17 +32,17 @@ model Comment {
   authorId  String
   movie     Movie    @relation(fields: [movieId], references: [movieId])
   movieId   Int
-  replies   Reply[]
+  // replies   Reply[]
 }
 
-model Reply {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  text      String
-  replyTo   Comment  @relation(fields: [commentId], references: [id])
-  commentId Int
-}
+// model Reply {
+//   id        Int      @id @default(autoincrement())
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   text      String
+//   replyTo   Comment  @relation(fields: [commentId], references: [id])
+//   commentId Int
+// }
 
 model Movie {
   id            Int          @id @default(autoincrement())
@@ -54,6 +54,7 @@ model Movie {
   comments      Comment[]
   likes         LikedMovie[]
   watchlists    WatchList[]
+  genres        String[]
 }
 
 model LikedMovie {

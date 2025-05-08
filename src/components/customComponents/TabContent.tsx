@@ -32,9 +32,14 @@ const TabContent = ({ movies }: PropType) => {
   const handleClick = () => {
     setIsListView(!isListView);
   };
+  if (movies.length < 1)
+    return <h1 className="text-3xl font-bold py-3">No movies added yet</h1>;
   return (
     <>
-      <button onClick={handleClick} className="cursor-pointer pt-2 pb-5">
+      <button
+        onClick={handleClick}
+        className="cursor-pointer pt-2 pb-5 hover:scale-101 w-fit mx-auto p-3"
+      >
         Change View
       </button>
       {isListView ? (
