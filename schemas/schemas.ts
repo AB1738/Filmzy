@@ -6,7 +6,7 @@ export const userSchema = z.object({
 });
 
 export const commentSchema = z.object({
-  text: z.string(),
+  text: z.string().min(10, "Comment must be at least 10 characters"),
   author: userSchema,
   authorId: z.string(),
 });

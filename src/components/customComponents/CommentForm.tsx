@@ -3,12 +3,13 @@
 import createComment from "@/app/actions/createComment";
 import { MovieData } from "../../../types/movies";
 import { Button } from "../ui/button";
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 import { Textarea } from "../ui/textarea";
 import { Label } from "../ui/label";
 import { UserButton, useUser } from "@clerk/nextjs";
 import { Input } from "../ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { toast } from "sonner";
 interface PropType {
   movie: MovieData;
 }
@@ -16,6 +17,11 @@ const CommentForm = ({ movie }: PropType) => {
   const NewComment = createComment.bind(null, movie);
   const [state, formAction, isPending] = useActionState(NewComment, undefined);
   const user = useUser();
+  useEffect(() => {
+    if (state && state.success) {
+      toast.success("Comment Created! 🎞️");
+    }
+  }, [state]);
 
   return user ? (
     <form
