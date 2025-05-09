@@ -1,9 +1,6 @@
 "use client";
 import { Movies } from "../../../types/movies";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules";
 
-import "swiper/css";
 import Image from "next/image";
 import Link from "next/link";
 

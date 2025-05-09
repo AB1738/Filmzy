@@ -67,6 +67,7 @@ const addToWishOrLikeList = async (
           userId: user.id,
           firstName:
             user.firstName || user.emailAddresses[0].emailAddress.split("@")[0],
+          // imageUrl:user.imageUrl
         },
       });
       //AFTER CREATING A NEW ACCOUNT FOR THE USER ADD THE MOVIE TO THEIR WATCHLIST
@@ -169,6 +170,7 @@ const addToWishOrLikeList = async (
         }`,
       };
     }
+
     //IF USER DOESNT EXIST THEN THEY NEED TO BE ADDED TO DB
     await prisma.user.create({
       data: {
