@@ -67,8 +67,10 @@ const addToWishOrLikeList = async (
           userId: user.id,
           firstName:
             user.firstName || user.emailAddresses[0].emailAddress.split("@")[0],
+          // imageUrl: user.imageUrl,
         },
       });
+
       //AFTER CREATING A NEW ACCOUNT FOR THE USER ADD THE MOVIE TO THEIR WATCHLIST
       //CHECK IF USER HAS ALREADY WATCHLISTED/LIKED THE MOVIE
       const entryExists = await (prisma[model] as any).findFirst({
@@ -175,6 +177,7 @@ const addToWishOrLikeList = async (
         userId: user.id,
         firstName:
           user.firstName || user.emailAddresses[0].emailAddress.split("@")[0],
+        // imageUrl: user.imageUrl,
       },
     });
     //AFTER CREATING A NEW ACCOUNT FOR THE USER ADD THE MOVIE TO THEIR WATCHLIST

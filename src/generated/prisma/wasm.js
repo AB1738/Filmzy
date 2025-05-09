@@ -123,7 +123,8 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  firstName: 'firstName'
+  firstName: 'firstName',
+  imageUrl: 'imageUrl'
 };
 
 exports.Prisma.CommentScalarFieldEnum = {
@@ -133,6 +134,14 @@ exports.Prisma.CommentScalarFieldEnum = {
   text: 'text',
   authorId: 'authorId',
   movieId: 'movieId'
+};
+
+exports.Prisma.ReplyScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  text: 'text',
+  commentId: 'commentId'
 };
 
 exports.Prisma.MovieScalarFieldEnum = {
@@ -173,6 +182,7 @@ exports.Prisma.QueryMode = {
 exports.Prisma.ModelName = {
   User: 'User',
   Comment: 'Comment',
+  Reply: 'Reply',
   Movie: 'Movie',
   LikedMovie: 'LikedMovie',
   WatchList: 'WatchList'

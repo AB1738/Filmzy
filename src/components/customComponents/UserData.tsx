@@ -23,7 +23,6 @@ const UserData = ({ likedMovies, watchListMovies }: PropType) => {
   const totalMoviesWatchlisted = watchListMovies.length;
   return (
     <div>
-      {/* UserData */}
       <div className="flex flex-col md:flex-row gap-2 pt-2 pb-4">
         <TotalMoviesCard total={totalMoviesLiked} totalType="likedMovies" />
         <TotalMoviesCard

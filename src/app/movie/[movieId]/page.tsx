@@ -7,6 +7,7 @@ import { notFound } from "next/navigation";
 import { currentUser } from "@clerk/nextjs/server";
 import getMovieRecommendations from "@/lib/getMovieRecommendations";
 import RecommendedMovies from "@/components/customComponents/RecommendedMovies";
+import CommentSection from "@/components/customComponents/CommentSection";
 
 interface PropType {
   params: Promise<{ movieId: string }>;
@@ -114,7 +115,7 @@ const MoviePage = async ({ params }: PropType) => {
         </div>
       </div>
       {/* Comment section */}
-      {/* <CommentSection /> */}
+      <CommentSection movie={movie} />
       {recommendedMovies && recommendedMovies.length > 0 && (
         <div className="max-w-full">
           <h3 className="py-3 font-semibold text-xl sm:text-2xl">
