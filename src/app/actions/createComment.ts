@@ -4,6 +4,7 @@ import { currentUser } from "@clerk/nextjs/server";
 import { MovieData } from "../../../types/movies";
 import prisma from "../../../lib/prisma";
 import { commentSchema, movieSchema } from "../../../schemas/schemas";
+import { revalidatePath } from "next/cache";
 
 const createComment = async (
   movieData: MovieData,
@@ -64,6 +65,8 @@ const createComment = async (
             authorId: userExists.userId,
           },
         });
+        revalidatePath(`/movie/${movieData.id}`);
+
         return {
           success: {
             message: "Comment created",
@@ -101,6 +104,8 @@ const createComment = async (
           authorId: newUser.userId,
         },
       });
+      revalidatePath(`/movie/${movieData.id}`);
+
       return {
         success: {
           message: "Comment created",
@@ -158,6 +163,8 @@ const createComment = async (
           authorId: userExists.userId,
         },
       });
+      revalidatePath(`/movie/${movieData.id}`);
+
       return {
         success: {
           message: "Comment created",
@@ -195,6 +202,7 @@ const createComment = async (
         authorId: newUser.userId,
       },
     });
+    revalidatePath(`/movie/${movieData.id}`);
     return {
       success: {
         message: "Comment created",

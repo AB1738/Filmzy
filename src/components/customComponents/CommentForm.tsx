@@ -7,9 +7,12 @@ import { useActionState, useEffect } from "react";
 import { Textarea } from "../ui/textarea";
 import { Label } from "../ui/label";
 import { UserButton, useUser } from "@clerk/nextjs";
+import { CircleUser } from "lucide-react";
+
 import { Input } from "../ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { toast } from "sonner";
+import Image from "next/image";
 interface PropType {
   movie: MovieData;
 }
@@ -26,7 +29,7 @@ const CommentForm = ({ movie }: PropType) => {
   return user ? (
     <form
       action={formAction}
-      className=" w-full flex flex-col gap-2.5 bg-[#d2cdd7] p-2.5 rounded text-black"
+      className=" w-full flex flex-col gap-2.5  p-2.5 rounded text-black"
     >
       <Label htmlFor="comment" className="self-center">
         Leave a comment
@@ -35,7 +38,14 @@ const CommentForm = ({ movie }: PropType) => {
         <div className="relative w-full sm:w-[75%] flex justify-center">
           <Avatar>
             <AvatarImage src={user.user?.imageUrl} />
-            <AvatarFallback>CN</AvatarFallback>
+            <AvatarFallback>
+              <Image
+                src={"/img/usericon.png"}
+                height={1000}
+                width={1000}
+                alt=""
+              />
+            </AvatarFallback>
           </Avatar>
 
           <div className="flex flex-col w-full">
