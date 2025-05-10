@@ -10,6 +10,8 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { toast } from "sonner";
+import deleteComment from "@/app/actions/deleteComment";
 
 interface PropType {
   comment: CommentType;
@@ -17,8 +19,17 @@ interface PropType {
 const Comment = ({ comment }: PropType) => {
   const { user } = useUser();
 
-  const deleteComment = async () => {
-    console.log("delete clicked");
+  const handleClick = async () => {
+    //delete action then toast noti
+    toast.promise(deleteComment(comment.id), {
+      loading: "Deleting comment...",
+      success: (res) => {
+        return res.success?.message;
+      },
+      error: (err) => {
+        return err.message || "Something went wrong";
+      },
+    });
   };
   return (
     <div className="flex gap-1 items-center px-4 py-2 w-full sm:w-[75%] mx-auto relative my-3 bg-white rounded-lg">
@@ -39,7 +50,7 @@ const Comment = ({ comment }: PropType) => {
               <EllipsisVertical size={16} />
             </PopoverTrigger>
             <PopoverContent className="cursor-pointer hover:scale-101">
-              <p onClick={deleteComment}>Delete Comment</p>
+              <p onClick={handleClick}>Delete Comment</p>
             </PopoverContent>
           </Popover>
         </div>
