@@ -44,7 +44,7 @@ const MovieList = ({ movies }: MovieListProps) => {
                 <h3 className="text-base sm:text-xl font-semibold line">
                   {movie.title}
                 </h3>
-                <p className="line-clamp-2 text-gray-300 text-xs sm:text-base">
+                <p className="line-clamp-2 text-gray-200 dark:text-gray-300 text-xs sm:text-base">
                   {movie.overview}
                 </p>
               </div>

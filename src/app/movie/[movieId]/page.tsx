@@ -58,7 +58,7 @@ const MoviePage = async ({ params }: PropType) => {
 
   return (
     <div className="flex flex-col gap-3.5 items-center">
-      <h1 className="text-3xl font-bold sm:self-start py-2">{movie.title}</h1>
+      <h1 className="text-3xl font-bold sm:self-start py-2 ">{movie.title}</h1>
       <a href={movie.homepage} className="flex-1">
         <Image
           src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
@@ -74,10 +74,10 @@ const MoviePage = async ({ params }: PropType) => {
         </div>
       )}
 
-      <p className="flex-1 font-semibold text-center leading-7">
+      <p className="flex-1 font-semibold text-center leading-7  text-black dark:text-white">
         {movie.overview}
       </p>
-      <div className="grid grid-cols-4 lg:items-center w-full my-2 justify-center gap-2">
+      <div className="grid grid-cols-4 lg:items-center w-full my-2 justify-center gap-2  text-black dark:text-white">
         <div className="col-span-2 lg:col-span-1 flex flex-col text-center gap-2 flex-1">
           <h3 className="font-bold text-2xl pb-2">Movie Info</h3>
 

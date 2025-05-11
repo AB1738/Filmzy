@@ -32,7 +32,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <ClerkProvider>
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#30273d] text-white`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#ad94d1] dark:bg-[#30273d] text-white`}
         >
           <ThemeProvider
             attribute="class"

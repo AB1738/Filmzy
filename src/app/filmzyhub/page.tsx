@@ -36,12 +36,12 @@ const page = async () => {
         explore more movies?
       </h2>
       <UserData likedMovies={likedMovies} watchListMovies={watchListMovies} />
-      <Tabs defaultValue="watchList" className="w-full rounded-none">
-        <TabsList className="mx-auto rounded-none">
-          <TabsTrigger value="watchList" className="cursor-pointer ">
+      <Tabs defaultValue="watchList" className="w-full rounded-none ">
+        <TabsList className="mx-auto rounded-none ">
+          <TabsTrigger value="watchList" className="cursor-pointer  ">
             🎬 Your Watchlist
           </TabsTrigger>
-          <TabsTrigger value="likedMovies" className="cursor-pointer">
+          <TabsTrigger value="likedMovies" className="cursor-pointer ">
             ❤️ Your Liked Movies
           </TabsTrigger>
         </TabsList>

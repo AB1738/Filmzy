@@ -29,16 +29,19 @@ const GenreSelector = () => {
 
   return (
     <Select onValueChange={handleChange}>
-      <SelectTrigger className="cursor-pointer text-black bg-white w-full md:w-fit">
-        <SelectValue placeholder="Genres" />
+      <SelectTrigger className="cursor-pointer text-black dark:text-black bg-white dark:bg-white w-full md:w-fit">
+        <SelectValue
+          placeholder="Genres"
+          className="bg-white dark:bg-white text-black dark:text-black"
+        />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent className="bg-white dark:bg-white text-black dark:text-black">
         {genres &&
           genres.map((genre) => (
             <SelectItem
               value={genre.name + "/" + genre.id}
               key={genre.id}
-              className="cursor-pointer"
+              className="cursor-pointer bg-white dark:bg-white text-black dark:text-black dark:hover:bg-gray-100"
             >
               {genre.name}{" "}
             </SelectItem>

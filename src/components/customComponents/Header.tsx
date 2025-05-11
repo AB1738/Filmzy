@@ -75,7 +75,7 @@ const Header = () => {
                         name="query"
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
-                        className="bg-white"
+                        className="bg-white dark:bg-white"
                       />
                     </form>
 
@@ -120,7 +120,7 @@ const Header = () => {
               name="query"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="bg-white text-black"
+              className="bg-white dark:bg-white text-black"
             />
           </form>
 

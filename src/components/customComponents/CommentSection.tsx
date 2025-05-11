@@ -20,7 +20,7 @@ const CommentSection = async ({ movie }: PropType) => {
 
   console.log(comments);
   return (
-    <div className=" text-white rounded flex flex-col items-center pb-2">
+    <div className="  text-black dark:text-white rounded flex flex-col items-center pb-2">
       <CommentForm movie={movie} />
       {comments && comments.length > 0 ? (
         <Comments comments={comments} />

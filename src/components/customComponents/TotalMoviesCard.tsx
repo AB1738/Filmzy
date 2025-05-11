@@ -14,7 +14,7 @@ interface PropType {
 }
 const TotalMoviesCard = ({ total, totalType }: PropType) => {
   return (
-    <Card className="rounded bg-[#3c2f4e] text-white border-none shadow-2xl">
+    <Card className="rounded bg-[#85739e] dark:bg-[#3c2f4e] text-white border-none shadow-2xl">
       <CardHeader>
         <CardTitle>
           <h3>

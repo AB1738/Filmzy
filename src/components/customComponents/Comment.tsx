@@ -32,16 +32,17 @@ const Comment = ({ comment }: PropType) => {
     });
   };
   return (
-    <div className="flex gap-1.5 items-center  w-full sm:w-[75%] mx-auto relative my-1 ">
+    <div className="flex gap-1.5 items-center  w-full sm:w-[75%] mx-auto relative my-1">
       <div className="flex flex-col items-center self-start">
         <Avatar>
-          <AvatarImage src={"/img/usericon.pngs"} />
+          <AvatarImage src={"/img/usericon.png"} className="bg-white" />
           <AvatarFallback>
             <Image
               src={"/img/usericon.png"}
               height={1000}
               width={1000}
               alt=""
+              className="bg-white"
             />
           </AvatarFallback>
         </Avatar>

@@ -29,7 +29,7 @@ const CommentForm = ({ movie }: PropType) => {
   return user ? (
     <form
       action={formAction}
-      className=" w-full flex flex-col gap-2.5  p-2.5 rounded text-white"
+      className=" w-full flex flex-col gap-2.5  p-2.5 rounded  text-black dark:text-white"
     >
       <Label htmlFor="comment" className="self-center">
         Leave a comment
@@ -53,7 +53,7 @@ const CommentForm = ({ movie }: PropType) => {
               name="comment"
               id="comment"
               placeholder="Share your thoughts about the movie..."
-              className={`border-t-0 placeholder:text-[#c7bebe] border-b-black border-r-0 border-l-0 ml-2 sm:ml-4 focus-visible:ring-0 focus-visible:outline-none${
+              className={`border-t-0 placeholder:text-white dark:placeholder:text-[#c7bebe] border-b-black border-r-0 border-l-0 ml-2 sm:ml-4 focus-visible:ring-0 focus-visible:outline-none${
                 state?.error ? "border-b-red-500" : ""
               }`}
             />
