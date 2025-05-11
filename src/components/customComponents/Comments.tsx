@@ -1,3 +1,5 @@
+"use client";
+import { useEffect, useRef } from "react";
 import Comment from "./Comment";
 
 export interface Comment {
@@ -18,8 +20,16 @@ interface Comments {
   comments: Comment[];
 }
 const Comments = ({ comments }: Comments) => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  }, [comments]);
+
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col h-[400px] overflow-y-auto" ref={scrollRef}>
       {comments.map((comment) => (
         <Comment key={comment.id} comment={comment} />
       ))}

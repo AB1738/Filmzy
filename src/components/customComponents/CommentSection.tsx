@@ -20,12 +20,14 @@ const CommentSection = async ({ movie }: PropType) => {
 
   console.log(comments);
   return (
-    <div className="bg-[#d2cdd7] text-black">
+    <div className=" text-white rounded flex flex-col items-center pb-2">
       <CommentForm movie={movie} />
       {comments && comments.length > 0 ? (
         <Comments comments={comments} />
       ) : (
-        <h1>No comments yet. Be the first to leave one</h1>
+        <h1 className="font-bold text-2xl">
+          Be the first to share your thoughts!
+        </h1>
       )}
     </div>
   );

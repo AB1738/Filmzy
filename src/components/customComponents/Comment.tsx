@@ -32,29 +32,43 @@ const Comment = ({ comment }: PropType) => {
     });
   };
   return (
-    <div className="flex gap-1 items-center px-4 py-2 w-full sm:w-[75%] mx-auto relative my-3 bg-white rounded-lg">
-      <Avatar>
-        <AvatarImage src={"/img/usericon.png"} />
-        <AvatarFallback>
-          <Image src={"/img/usericon.png"} height={1000} width={1000} alt="" />
-        </AvatarFallback>
-      </Avatar>
-
-      <p>{comment.author.firstName} </p>
-      <p>{comment.text} </p>
-      <p>{new Date(comment.createdAt).toLocaleDateString()}</p>
-      {user && user.id === comment.authorId && (
-        <div className="absolute right-10">
-          <Popover>
-            <PopoverTrigger className="cursor-pointer">
-              <EllipsisVertical size={16} />
-            </PopoverTrigger>
-            <PopoverContent className="cursor-pointer hover:scale-101">
-              <p onClick={handleClick}>Delete Comment</p>
-            </PopoverContent>
-          </Popover>
+    <div className="flex gap-1.5 items-center  w-full sm:w-[75%] mx-auto relative my-1 ">
+      <div className="flex flex-col items-center self-start">
+        <Avatar>
+          <AvatarImage src={"/img/usericon.pngs"} />
+          <AvatarFallback>
+            <Image
+              src={"/img/usericon.png"}
+              height={1000}
+              width={1000}
+              alt=""
+            />
+          </AvatarFallback>
+        </Avatar>
+        <p className="text-sm font-semibold text-center">
+          {comment.author.firstName}{" "}
+        </p>
+      </div>
+      <div className="rounded-md  rounded-tl-none shadow-md flex flex-col-reverse justify-center sm:flex-row sm:justify-between relative flex-1 px-4 py-2  self-start">
+        <p className="">{comment.text} </p>
+        <div className="flex items-center h-full self-end">
+          <p className="text-xs self-center">
+            {new Date(comment.createdAt).toLocaleDateString()}
+          </p>
+          {user && user.id === comment.authorId && (
+            <div className="self-end">
+              <Popover>
+                <PopoverTrigger className="cursor-pointer self-end">
+                  <EllipsisVertical size={14} />
+                </PopoverTrigger>
+                <PopoverContent className="cursor-pointer hover:scale-101">
+                  <p onClick={handleClick}>Delete Comment</p>
+                </PopoverContent>
+              </Popover>
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 };
