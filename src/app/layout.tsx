@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Anton } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/customComponents/Header";
 import Footer from "@/components/customComponents/Footer";
@@ -7,6 +7,13 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { ModeToggle } from "@/components/customComponents/ThemeToggler";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/providers/ThemeProvider";
+
+const anton = Anton({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-anton",
+});
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -32,7 +39,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <ClerkProvider>
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#ad94d1] dark:bg-[#30273d] text-white`}
+          className={`${geistSans.className}  antialiased bg-[#ad94d1] dark:bg-[#30273d] text-white`}
         >
           <ThemeProvider
             attribute="class"

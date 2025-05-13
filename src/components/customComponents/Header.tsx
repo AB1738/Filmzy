@@ -130,7 +130,7 @@ const Header = () => {
           <SignedOut>
             <Button
               asChild
-              className="cursor-pointer font-semibold bg-transparent"
+              className="cursor-pointer font-semibold bg-transparent text-white dark:hover:text-black"
             >
               <SignInButton mode="modal" />
             </Button>

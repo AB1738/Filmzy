@@ -44,6 +44,7 @@ const CommentForm = ({ movie }: PropType) => {
                 height={1000}
                 width={1000}
                 alt=""
+                className="bg-white"
               />
             </AvatarFallback>
           </Avatar>

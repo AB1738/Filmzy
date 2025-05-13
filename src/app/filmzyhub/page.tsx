@@ -27,13 +27,15 @@ const page = async () => {
     },
   });
   const likedMovies = likedData.map((data) => data.movie);
+  console.log(user);
 
   return (
     <div className="flex flex-col h-full items-center text-center">
       <h1 className=" text-3xl sm:text-4xl font-bold py-3">FilmzyHub</h1>
       <h2 className=" font-semibold py-2">
-        Hey, {user.firstName}! Welcome to your FilmzyHub dashboard. Ready to
-        explore more movies?
+        Hey,{" "}
+        {user.firstName || user.emailAddresses[0].emailAddress.split("@")[0]}!
+        Welcome to your FilmzyHub dashboard. Ready to explore more movies?
       </h2>
       <UserData likedMovies={likedMovies} watchListMovies={watchListMovies} />
       <Tabs defaultValue="watchList" className="w-full rounded-none ">

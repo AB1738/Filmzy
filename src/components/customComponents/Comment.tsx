@@ -33,7 +33,7 @@ const Comment = ({ comment }: PropType) => {
   };
   return (
     <div className="flex gap-1.5 items-center  w-full sm:w-[75%] mx-auto relative my-1">
-      <div className="flex flex-col items-center self-start">
+      <div className="flex flex-col items-center self-start ">
         <Avatar>
           <AvatarImage src={"/img/usericon.png"} className="bg-white" />
           <AvatarFallback>
@@ -46,12 +46,15 @@ const Comment = ({ comment }: PropType) => {
             />
           </AvatarFallback>
         </Avatar>
-        <p className="text-sm font-semibold text-center">
+        {/* <p className="text-xs font-semibold text-center">
           {comment.author.firstName}{" "}
-        </p>
+        </p> */}
       </div>
-      <div className="rounded-md  rounded-tl-none shadow-md flex flex-col-reverse justify-center sm:flex-row sm:justify-between relative flex-1 px-4 py-2  self-start">
-        <p className="">{comment.text} </p>
+      <div className="rounded-md flex-1 rounded-tl-none shadow-md flex flex-col-reverse justify-center sm:flex-row sm:justify-between relative  px-4 py-2  self-start">
+        <div className="flex flex-col">
+          <p className="text-xs font-semibold ">{comment.author.firstName} </p>
+          <p className="">{comment.text} </p>
+        </div>
         <div className="flex items-center h-full self-end">
           <p className="text-xs self-center">
             {new Date(comment.createdAt).toLocaleDateString()}
