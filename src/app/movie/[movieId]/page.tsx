@@ -9,6 +9,7 @@ import getMovieRecommendations from "@/lib/getMovieRecommendations";
 import RecommendedMovies from "@/components/customComponents/RecommendedMovies";
 import CommentSection from "@/components/customComponents/CommentSection";
 import { Suspense } from "react";
+import CommentSectionLoader from "@/components/customComponents/CommentSectionLoader";
 
 interface PropType {
   params: Promise<{ movieId: string }>;
@@ -118,7 +119,7 @@ const MoviePage = async ({ params }: PropType) => {
         </div>
       </div>
       {/* Comment section */}
-      <Suspense fallback="loading">
+      <Suspense fallback={<CommentSectionLoader />}>
         <div className="w-full">
           <CommentSection movie={movie} />
         </div>
