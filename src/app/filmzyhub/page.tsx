@@ -5,6 +5,8 @@ import RecommendedMovies from "@/components/customComponents/RecommendedMovies";
 import TabMovieCarousel from "@/components/customComponents/TabContent";
 import TabContent from "@/components/customComponents/TabContent";
 import UserData from "@/components/customComponents/UserData";
+import { Suspense } from "react";
+import DashboardLoader from "@/components/customComponents/DashboardLoader";
 
 const page = async () => {
   const user = await currentUser();
@@ -32,38 +34,40 @@ const page = async () => {
   return (
     <div className="flex flex-col h-full items-center text-center">
       <h1 className=" text-3xl sm:text-4xl font-bold py-3">FilmzyHub</h1>
-      <h2 className=" font-semibold py-2">
-        Hey,{" "}
-        {user.firstName || user.emailAddresses[0].emailAddress.split("@")[0]}!
-        Welcome to your FilmzyHub dashboard. Ready to explore more movies?
-      </h2>
-      <UserData likedMovies={likedMovies} watchListMovies={watchListMovies} />
-      <Tabs defaultValue="watchList" className="w-full rounded-none ">
-        <TabsList className="mx-auto rounded-none ">
-          <TabsTrigger value="watchList" className="cursor-pointer  ">
-            🎬 Your Watchlist
-          </TabsTrigger>
-          <TabsTrigger value="likedMovies" className="cursor-pointer ">
-            ❤️ Your Liked Movies
-          </TabsTrigger>
-        </TabsList>
-        <TabsContent value="watchList">
-          <div className="flex flex-col w-full">
-            <h3 className="text-lg font-semibold text-left py-2">
-              🎬Movies You Plan to Watch
-            </h3>
-            {watchListMovies && <TabContent movies={watchListMovies} />}
-          </div>
-        </TabsContent>
-        <TabsContent value="likedMovies">
-          <div className="flex flex-col w-full">
-            <h3 className="text-lg font-semibold text-left py-2">
-              ❤️Movies You've Liked
-            </h3>
-            {likedMovies && <TabContent movies={likedMovies} />}
-          </div>
-        </TabsContent>
-      </Tabs>
+      <Suspense fallback={<DashboardLoader />}>
+        <h2 className=" font-semibold py-2">
+          Hey,{" "}
+          {user.firstName || user.emailAddresses[0].emailAddress.split("@")[0]}!
+          Welcome to your FilmzyHub dashboard. Ready to explore more movies?
+        </h2>
+        <UserData likedMovies={likedMovies} watchListMovies={watchListMovies} />
+        <Tabs defaultValue="watchList" className="w-full rounded-none ">
+          <TabsList className="mx-auto rounded-none ">
+            <TabsTrigger value="watchList" className="cursor-pointer  ">
+              🎬 Your Watchlist
+            </TabsTrigger>
+            <TabsTrigger value="likedMovies" className="cursor-pointer ">
+              ❤️ Your Liked Movies
+            </TabsTrigger>
+          </TabsList>
+          <TabsContent value="watchList">
+            <div className="flex flex-col w-full">
+              <h3 className="text-lg font-semibold text-left py-2">
+                🎬Movies You Plan to Watch
+              </h3>
+              {watchListMovies && <TabContent movies={watchListMovies} />}
+            </div>
+          </TabsContent>
+          <TabsContent value="likedMovies">
+            <div className="flex flex-col w-full">
+              <h3 className="text-lg font-semibold text-left py-2">
+                ❤️Movies You've Liked
+              </h3>
+              {likedMovies && <TabContent movies={likedMovies} />}
+            </div>
+          </TabsContent>
+        </Tabs>
+      </Suspense>
     </div>
   );
 };

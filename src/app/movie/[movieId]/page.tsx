@@ -8,6 +8,7 @@ import { currentUser } from "@clerk/nextjs/server";
 import getMovieRecommendations from "@/lib/getMovieRecommendations";
 import RecommendedMovies from "@/components/customComponents/RecommendedMovies";
 import CommentSection from "@/components/customComponents/CommentSection";
+import { Suspense } from "react";
 
 interface PropType {
   params: Promise<{ movieId: string }>;
@@ -58,7 +59,9 @@ const MoviePage = async ({ params }: PropType) => {
 
   return (
     <div className="flex flex-col gap-3.5 items-center">
-      <h1 className="text-3xl font-bold sm:self-start py-2 ">{movie.title}</h1>
+      <h1 className="text-3xl font-bold text-center sm:text-left sm:self-start py-2 ">
+        {movie.title}
+      </h1>
       <a href={movie.homepage} className="flex-1">
         <Image
           src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
@@ -115,9 +118,12 @@ const MoviePage = async ({ params }: PropType) => {
         </div>
       </div>
       {/* Comment section */}
-      <div className="w-full">
-        <CommentSection movie={movie} />
-      </div>
+      <Suspense fallback="loading">
+        <div className="w-full">
+          <CommentSection movie={movie} />
+        </div>
+      </Suspense>
+
       {recommendedMovies && recommendedMovies.length > 0 && (
         <div className="max-w-full">
           <h3 className="py-3 font-semibold text-xl sm:text-2xl">
