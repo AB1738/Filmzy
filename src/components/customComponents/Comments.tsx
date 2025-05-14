@@ -29,7 +29,10 @@ const Comments = ({ comments }: Comments) => {
   }, [comments]);
 
   return (
-    <div className="flex flex-col h-[400px] overflow-y-auto" ref={scrollRef}>
+    <div
+      className="flex flex-col h-[400px] w-full overflow-y-auto"
+      ref={scrollRef}
+    >
       {comments.map((comment) => (
         <Comment key={comment.id} comment={comment} />
       ))}

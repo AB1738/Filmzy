@@ -26,56 +26,14 @@ const createComment = async (
     console.log(commentText);
     console.log(movieData);
 
-    //CHECK IF MOVIE IS IN DB
-    const movieIsInDb = await prisma.movie.findUnique({
+    //CHECK IF USER IS IN DB
+    let userExists = await prisma.user.findUnique({
       where: {
-        movieId: movieData.id,
+        userId: user.id,
       },
     });
-
-    //IF IS IN DB
-    if (movieIsInDb) {
-      //CHECK IS USER HAS AN ACCOUNT
-      const userExists = await prisma.user.findUnique({
-        where: {
-          userId: user.id,
-        },
-      });
-
-      //IF USER HAS ACCOUNT
-      if (userExists) {
-        const comment = {
-          text: commentText,
-          movieId: movieData.id,
-          author: userExists,
-          authorId: userExists.userId,
-        };
-        //make sure comment has valid structure
-        const validatedComment = commentSchema.safeParse(comment);
-        if (!validatedComment.success) {
-          const errorMessage =
-            validatedComment.error.flatten().fieldErrors.text?.[0];
-          throw new Error(errorMessage || "Invalid comment");
-        }
-
-        await prisma.comment.create({
-          data: {
-            text: commentText,
-            movieId: movieData.id,
-            authorId: userExists.userId,
-          },
-        });
-        revalidatePath(`/movie/${movieData.id}`);
-
-        return {
-          success: {
-            message: "Comment created",
-          },
-        };
-      }
-
-      //IF USER DOES NOT HAVE ACCOUNT CREATE A NEW ACCOUNT FOR THEM
-      const newUser = await prisma.user.create({
+    if (!userExists) {
+      userExists = await prisma.user.create({
         data: {
           userId: user.id,
           firstName:
@@ -83,109 +41,38 @@ const createComment = async (
           // imageUrl:user.imageUrl
         },
       });
-      const comment = {
-        text: commentText,
-        movieId: movieData.id,
-        author: newUser,
-        authorId: newUser.userId,
-      };
-      //make sure comment has valid structure
-      const validatedComment = commentSchema.safeParse(comment);
-      if (!validatedComment.success) {
-        const errorMessage =
-          validatedComment.error.flatten().fieldErrors.text?.[0];
-        throw new Error(errorMessage || "Invalid comment");
-      }
-
-      await prisma.comment.create({
-        data: {
-          text: commentText,
-          movieId: movieData.id,
-          authorId: newUser.userId,
-        },
-      });
-      revalidatePath(`/movie/${movieData.id}`);
-
-      return {
-        success: {
-          message: "Comment created",
-        },
-      };
     }
 
-    //IF IS NOT IN DB
-    //IF MOVIE WASNT FOUND THEN THE DATA NEEDS TO BE VALIDATED
-    const movie = movieSchema.safeParse(movieData);
-    if (!movie.success) {
-      throw new Error("Incorrect movie structure. Validation failed");
-    }
-
-    //ADD MOVIE TO THE DATABASE
-    const newMovie = await prisma.movie.create({
-      data: {
-        movieId: movie.data.id,
-        title: movie.data.title,
-        backdrop_path: movie.data.backdrop_path,
-        // genres: movie.data.genres.map((genre) => genre.name),
-        overview: movie.data.overview,
-        release_date: movie.data.release_date,
-        comments: undefined,
-        likes: undefined,
-        watchlists: undefined,
-      },
-    });
-    const userExists = await prisma.user.findUnique({
+    //CHECK IF MOVIE IS IN DB
+    let movieIsInDb = await prisma.movie.findUnique({
       where: {
-        userId: user.id,
+        movieId: movieData.id,
       },
     });
-
-    //IF USER HAS ACCOUNT
-    if (userExists) {
-      const comment = {
-        text: commentText,
-        movieId: newMovie.id,
-        author: userExists,
-        authorId: userExists.userId,
-      };
-      //make sure comment has valid structure
-      const validatedComment = commentSchema.safeParse(comment);
-      if (!validatedComment.success) {
-        const errorMessage =
-          validatedComment.error.flatten().fieldErrors.text?.[0];
-        throw new Error(errorMessage || "Invalid comment");
+    if (!movieIsInDb) {
+      const movie = movieSchema.safeParse(movieData);
+      if (!movie.success) {
+        throw new Error("Incorrect movie structure. Validation failed");
       }
-
-      await prisma.comment.create({
+      movieIsInDb = await prisma.movie.create({
         data: {
-          text: commentText,
-          movieId: newMovie.id,
-          authorId: userExists.userId,
+          movieId: movie.data.id,
+          title: movie.data.title,
+          backdrop_path: movie.data.backdrop_path,
+          // genres: movie.data.genres.map((genre) => genre.name),
+          overview: movie.data.overview,
+          release_date: movie.data.release_date,
+          comments: undefined,
+          likes: undefined,
+          watchlists: undefined,
         },
       });
-      revalidatePath(`/movie/${movieData.id}`);
-
-      return {
-        success: {
-          message: "Comment created",
-        },
-      };
     }
-
-    //IF USER DOES NOT HAVE ACCOUNT CREATE A NEW ACCOUNT FOR THEM
-    const newUser = await prisma.user.create({
-      data: {
-        userId: user.id,
-        firstName:
-          user.firstName || user.emailAddresses[0].emailAddress.split("@")[0],
-        // imageUrl:user.imageUrl
-      },
-    });
     const comment = {
       text: commentText,
-      movieId: newMovie.id,
-      author: newUser,
-      authorId: newUser.userId,
+      movieId: movieData.id,
+      author: userExists,
+      authorId: userExists.userId,
     };
     //make sure comment has valid structure
     const validatedComment = commentSchema.safeParse(comment);
@@ -198,11 +85,12 @@ const createComment = async (
     await prisma.comment.create({
       data: {
         text: commentText,
-        movieId: newMovie.id,
-        authorId: newUser.userId,
+        movieId: movieData.id,
+        authorId: userExists.userId,
       },
     });
     revalidatePath(`/movie/${movieData.id}`);
+
     return {
       success: {
         message: "Comment created",
