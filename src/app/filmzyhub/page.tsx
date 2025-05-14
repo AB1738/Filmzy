@@ -6,10 +6,25 @@ import UserData from "@/components/customComponents/UserData";
 import { Suspense } from "react";
 import DashboardLoader from "@/components/customComponents/DashboardLoader";
 
+type Data = {
+  id: number;
+  userId: string;
+  movieId: number;
+  createdAt: Date;
+  movie: {
+    id: number;
+    movieId: number;
+    title: string;
+    backdrop_path: string;
+    overview: string;
+    release_date: string;
+  };
+};
+
 const page = async () => {
   const user = await currentUser();
   if (!user) return;
-  const watchListData = await prisma.watchList.findMany({
+  const watchListData: Data[] = await prisma.watchList.findMany({
     where: {
       userId: user.id,
     },
