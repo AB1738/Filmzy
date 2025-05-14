@@ -3,7 +3,6 @@
 import { currentUser } from "@clerk/nextjs/server";
 import prisma from "../../../lib/prisma";
 import { MovieData } from "../../../types/movies";
-import { UserResource } from "@clerk/types";
 
 const getWatchlistStatus = async (movie: MovieData) => {
   const user = await currentUser();

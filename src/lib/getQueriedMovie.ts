@@ -1,7 +1,6 @@
 import { Movies } from "../../types/movies";
 
 const getQueriedMovie = async (movie: string) => {
-  console.log("lol", movie);
   try {
     const response = await fetch(
       `https://api.themoviedb.org/3/search/movie?query=${movie}`,

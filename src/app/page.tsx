@@ -1,6 +1,5 @@
 import HomePageSlider from "@/components/customComponents/HomePageSlider";
 import MovieCarousel from "@/components/customComponents/MovieCarousel";
-import MovieList from "@/components/customComponents/MovieList";
 import getCurrentlyPlayingMovies from "@/lib/getCurrentlyPlayingMovies";
 
 import getPopularMovies from "@/lib/getPopularMovies";
@@ -24,8 +23,8 @@ export default async function Home() {
         )}
       </section>
       <section>
-        {upcomingMovies && (
-          <HomePageSlider movies={upcomingMovies} title="Popular Movies" />
+        {popularMovies && (
+          <HomePageSlider movies={popularMovies} title="Popular Movies" />
         )}
       </section>
       <section>

@@ -27,11 +27,9 @@ const LikeButton = ({ movie }: ButtonPropType) => {
 
       likedStatus && setIsLiked(likedStatus);
       setIsLoading(false);
-      console.log("WATCH LIST STATUS BELOW");
-      console.log(likedStatus);
     };
     fetchWatchListStatus();
-  }, []);
+  }, [movie]);
 
   const handleClick = async () => {
     if (!isLiked) {
@@ -47,7 +45,6 @@ const LikeButton = ({ movie }: ButtonPropType) => {
         },
       });
     } else if (isLiked) {
-      console.log("already liked this");
       toast.promise(removeFromLikedMovies(movie), {
         loading: "Unliking movie...",
         success: (res) => {

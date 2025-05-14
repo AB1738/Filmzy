@@ -1,4 +1,4 @@
-import { MovieData, Movies } from "../../types/movies";
+import { MovieData } from "../../types/movies";
 
 const getMovieData = async (movieId: number) => {
   try {

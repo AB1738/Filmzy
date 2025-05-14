@@ -8,9 +8,7 @@ import {
 } from "@/components/ui/tooltip";
 import { MovieData } from "../../../types/movies";
 import addToWatchList from "@/app/actions/addToWatchList";
-import { useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
-import getWatchlistStatus from "@/app/actions/getWatchlistStatus";
 import { toast } from "sonner";
 import removeFromWatchList from "@/app/actions/removeFromWatchlist";
 import getWishlistOrLikeStatus from "@/app/actions/getWishlistOrLikeStatus";
@@ -29,11 +27,9 @@ const WatchListButton = ({ movie }: ButtonPropType) => {
 
       watchListStatus && setIsWatchListed(watchListStatus);
       setIsLoading(false);
-      console.log("WATCH LIST STATUS BELOW");
-      console.log(watchListStatus);
     };
     fetchWatchListStatus();
-  }, []);
+  }, [movie]);
 
   const handleClick = async () => {
     if (!isWatchListed) {
@@ -49,7 +45,6 @@ const WatchListButton = ({ movie }: ButtonPropType) => {
         },
       });
     } else if (isWatchListed) {
-      console.log("already watchlisted this");
       //removeFromWatchList server action
       toast.promise(removeFromWatchList(movie), {
         loading: "Removing movie from your watchlist...",

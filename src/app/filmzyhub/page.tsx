@@ -1,8 +1,6 @@
 import { currentUser } from "@clerk/nextjs/server";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import prisma from "../../../lib/prisma";
-import RecommendedMovies from "@/components/customComponents/RecommendedMovies";
-import TabMovieCarousel from "@/components/customComponents/TabContent";
 import TabContent from "@/components/customComponents/TabContent";
 import UserData from "@/components/customComponents/UserData";
 import { Suspense } from "react";
@@ -61,7 +59,7 @@ const page = async () => {
           <TabsContent value="likedMovies">
             <div className="flex flex-col w-full">
               <h3 className="text-lg font-semibold text-left py-2">
-                ❤️Movies You've Liked
+                {"❤️Movies You've Liked"}
               </h3>
               {likedMovies && <TabContent movies={likedMovies} />}
             </div>

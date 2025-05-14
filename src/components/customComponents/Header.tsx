@@ -5,12 +5,11 @@ import { Input } from "../ui/input";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import GenreSelector from "./GenreSelector";
-import { Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -33,9 +32,6 @@ const Header = () => {
     setIsMenuOpen(false);
   }, [pathname]);
 
-  const handleMenuStatus = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
   return (
     <header className={` fixed top-0 w-full h-20 z-20 `}>
       <nav className="flex flex-col gap-2 md:flex-row justify-between items-center p-5 md:px-15">
@@ -93,12 +89,6 @@ const Header = () => {
               </SheetContent>
             </Sheet>
           )}
-          {/* {isMenuOpen && (
-            <X
-              className="md:hidden self-end cursor-pointer"
-              onClick={handleMenuStatus}
-            />
-          )} */}
         </div>
 
         <div

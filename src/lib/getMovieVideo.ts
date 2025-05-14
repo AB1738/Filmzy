@@ -1,4 +1,3 @@
-import { Genres } from "../../types/genres";
 import { Videos } from "../../types/video";
 
 const getMovieVideo = async (movieId: number) => {
