@@ -33,7 +33,7 @@ const page = async () => {
     },
   });
   const watchListMovies = watchListData.map((data) => data.movie);
-  const likedData = await prisma.likedMovie.findMany({
+  const likedData: Data[] = await prisma.likedMovie.findMany({
     where: {
       userId: user.id,
     },
